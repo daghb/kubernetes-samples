@@ -14,10 +14,10 @@ gcloud beta container --project "poetic-glass-266311" clusters create "demo" --z
 ```
 
 ```
-gcloud beta container --project "poetic-glass-266311" clusters create "demo" --zone "europe-north1-a" --no-enable-basic-auth --cluster-version "1.13.11-gke.23" --machine-type "n1-standard-1" --image-type "COS" --disk-type "pd-standard" --disk-size "100" --scopes "https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append" --enable-cloud-logging --enable-cloud-monitoring --enable-ip-alias --network "projects/poetic-glass-266311/global/networks/default" --subnetwork "projects/poetic-glass-266311/regions/europe-north1/subnetworks/default" --default-max-pods-per-node "110" --addons HorizontalPodAutoscaling,HttpLoadBalancing --enable-autoupgrade --enable-autorepair  --enable-autoscaling --min-nodes 1 --max-nodes 4 --num-nodes 2
+gcloud beta container --project "poetic-glass-266311" clusters create "demo" --zone "europe-north1-a" --no-enable-basic-auth --cluster-version "1.13.11-gke.23" --machine-type "n1-standard-1" --image-type "COS" --disk-type "pd-standard" --disk-size "100" --scopes "https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append" --enable-cloud-logging --enable-cloud-monitoring --enable-ip-alias --network "projects/poetic-glass-266311/global/networks/default" --subnetwork "projects/poetic-glass-266311/regions/europe-north1/subnetworks/default" --default-max-pods-per-node "110" --addons HorizontalPodAutoscaling,HttpLoadBalancing --enable-autoupgrade --enable-autorepair  --enable-autoscaling --min-nodes 1 --max-nodes 8 --num-nodes 2
 ```
 5. Opprett - tar ca. 2 minutter
-6. Gï¿½ innom Monitoring for ï¿½ starte init der
+6. G† innom Monitoring for † starte init der
 
 ## Examples app
 
@@ -37,10 +37,10 @@ kubectl expose deployment hello-web --type=LoadBalancer --port 80 --target-port 
 kubectl apply -f web-deployment.yaml
 kubectl apply -f ingress.yaml
 kubectl get pods -o wide
-kubectl scale deployments/web --replicas=4
-kubectl get pods -o wide
-kubectl scale deployments/web --replicas=2
-kubectl get pods -o wide
+# kubectl scale deployments/web --replicas=4
+# kubectl get pods -o wide
+# kubectl scale deployments/web --replicas=2
+# kubectl get pods -o wide
 ```
 
 ## Static IP
@@ -66,5 +66,6 @@ while true; do wget -q -O- http://php-apache.default.svc.cluster.local; done
 
 kubectl get hpa
 kubectl get deployment php-apache
+kubectl describe pod
 kubectl get pods
 ```
